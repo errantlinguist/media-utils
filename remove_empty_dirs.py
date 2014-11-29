@@ -183,7 +183,7 @@ if __name__ == "__main__":
 	exitcode = 1
 
 	argparser = argparse.ArgumentParser(description="A script for cleaning up (sub-)directories in a directory tree which do not contain files matching a given content type pattern, e.g. media files such as \"*.mp3\" or \"*.mpg\" by default.")
-	indir_arg = "indir"
+	indir_arg = "rootdir"
 	argparser.add_argument(indir_arg, help="the root directory to search for subdirectories not containing valid content files")
 	content_file_pattern_arg = "content_file_pattern"
 	argparser.add_argument("-f --content_file_pattern", action=PatternAction, dest=content_file_pattern_arg, default=__create_default_content_file_pattern(), help="the root directory to search for subdirectories not containing valid content files")

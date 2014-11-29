@@ -107,7 +107,6 @@ def __add_empty_dirs(dirpath, subdirnames, filenames, content_file_pattern, empt
 if __name__ == "__main__":
 	import argparse
 	import shutil
-	import sys
 
 	# Classes used only when running file as a script ----------------------
 	class PatternAction(argparse.Action):
@@ -191,10 +190,13 @@ if __name__ == "__main__":
 	argparser.add_argument("-e --subdir_exclusion_pattern", action=PatternAction, dest=subdir_exclusion_pattern_arg, default=__create_default_subdir_exclusion_pattern(), help="a pattern matching subdirectories to be excluded from search and possible deletion")
 	args = argparser.parse_args()
 
-	empty_dirs = find_empty_dirs(getattr(args, rootdir_arg), getattr(args, content_file_pattern_arg), getattr(args, subdir_exclusion_pattern_arg))
+	rootdir = getattr(args, rootdir_arg)
+	print "Searching \"%s\" for non-content subdirectories..." % rootdir
+	empty_dirs = find_empty_dirs(rootdir, getattr(args, content_file_pattern_arg), getattr(args, subdir_exclusion_pattern_arg))
+	print "Found %d subdirector(y|ies) which are candidate for deletion." % len(empty_dirs)
 	deleted_dir_count = __delete_interactively(sorted(empty_dirs))
-	print >> sys.stderr, "Deleted %d director(y|ies)." % deleted_dir_count
+	print "Deleted %d subdirector(y|ies)." % deleted_dir_count
 	exitcode = 0
 
-	sys.exit(exitcode)
+	exit(exitcode)
 

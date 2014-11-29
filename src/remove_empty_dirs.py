@@ -103,6 +103,7 @@ def __add_empty_dirs(dirpath, subdirnames, filenames, content_file_pattern, empt
 			if not has_content_files:
 				empty_dirs.add(dirpath)		
 
+
 if __name__ == "__main__":
 	import argparse
 	import shutil

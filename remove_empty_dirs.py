@@ -47,7 +47,7 @@ def find_empty_dirs(rootdir, content_file_pattern, subdir_exclusion_pattern=None
 	'''
 	result = set()
 
-	walk_generator = os.walk(rootdir, topdown=False, followlinks=True)
+	walk_generator = os.walk(rootdir, followlinks=True, topdown=False)
 	if subdir_exclusion_pattern:
 		for dirpath, subdirnames, filenames in walk_generator:
 			if not subdir_exclusion_pattern.match(dirpath):

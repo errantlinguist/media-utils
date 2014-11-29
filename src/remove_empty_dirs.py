@@ -109,7 +109,6 @@ if __name__ == "__main__":
 	import sys
 
 	# Classes used only when running file as a script ----------------------
-
 	class PatternAction(argparse.Action):
 		'''
 		An Action which compiles a regular expression from the given argument string.		

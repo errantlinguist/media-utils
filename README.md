@@ -15,7 +15,7 @@ Requirements
 Contents
 --------------------------------------------------------------------------------
 
-* **remove_empty_dirs.py:** A script for cleaning up (sub-)directories in a directory tree which do not contain files matching a given content type pattern, e.g. media files such as "*.mp3" or "*.mpg" by default.
+* **[remove_empty_dirs.py](https://raw.githubusercontent.com/errantlinguist/media-utils/master/remove_empty_dirs.py):** A script for cleaning up (sub-)directories in a directory tree which do not contain files matching a given content type pattern, e.g. media files such as "*.mp3" or "*.mpg" by default.
 
 To do
 --------------------------------------------------------------------------------

@@ -178,12 +178,6 @@ if __name__ == "__main__":
 				result += 1
 
 		return result
-	# Constants used only when running file as a script --------------------
-
-	'''
-	The default exit code if the script is not passed valid command-line parameters and no system-specific exit codes could be found.
-	'''
-	__DEFAULT_EX_USAGE=64
 	# ----------------------------------------------------------------------
 
 	exitcode = 1
@@ -199,7 +193,7 @@ if __name__ == "__main__":
 
 	empty_dirs = find_empty_dirs(getattr(args, indir_arg), getattr(args, content_file_pattern_arg), getattr(args, subdir_exclusion_pattern_arg))
 	deleted_dir_count = __delete_interactively(sorted(empty_dirs))
-	print >> sys.stderr, "Deleted %d directories." % deleted_dir_count
+	print >> sys.stderr, "Deleted %d director(y|ies)." % deleted_dir_count
 	exitcode = 0
 
 	sys.exit(exitcode)

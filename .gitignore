@@ -1,3 +1,5 @@
+# PYTHON (auto-generated from GitHub website) ----------------------------------
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -52,3 +54,25 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# EMACS -------------------------------------------------------------------------
+*~
+
+# ECLIPSE -----------------------------------------------------------------------
+# (from https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore)
+.loadpath
+.metadata
+.settings/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally-stored "Eclipse launch configurations"
+*.launch

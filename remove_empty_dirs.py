@@ -183,15 +183,15 @@ if __name__ == "__main__":
 	exitcode = 1
 
 	argparser = argparse.ArgumentParser(description="A script for cleaning up (sub-)directories in a directory tree which do not contain files matching a given content type pattern, e.g. media files such as \"*.mp3\" or \"*.mpg\" by default.")
-	indir_arg = "rootdir"
-	argparser.add_argument(indir_arg, help="the root directory to search for subdirectories not containing valid content files")
+	rootdir_arg = "rootdir"
+	argparser.add_argument(rootdir_arg, help="the root directory to search for subdirectories not containing valid content files")
 	content_file_pattern_arg = "content_file_pattern"
 	argparser.add_argument("-f --content_file_pattern", action=PatternAction, dest=content_file_pattern_arg, default=__create_default_content_file_pattern(), help="the root directory to search for subdirectories not containing valid content files")
 	subdir_exclusion_pattern_arg = "subdir_exclusion_pattern"
 	argparser.add_argument("-e --subdir_exclusion_pattern", action=PatternAction, dest=subdir_exclusion_pattern_arg, default=__create_default_subdir_exclusion_pattern(), help="a pattern matching subdirectories to be excluded from search and possible deletion")
 	args = argparser.parse_args()
 
-	empty_dirs = find_empty_dirs(getattr(args, indir_arg), getattr(args, content_file_pattern_arg), getattr(args, subdir_exclusion_pattern_arg))
+	empty_dirs = find_empty_dirs(getattr(args, rootdir_arg), getattr(args, content_file_pattern_arg), getattr(args, subdir_exclusion_pattern_arg))
 	deleted_dir_count = __delete_interactively(sorted(empty_dirs))
 	print >> sys.stderr, "Deleted %d director(y|ies)." % deleted_dir_count
 	exitcode = 0

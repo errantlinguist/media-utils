@@ -16,11 +16,11 @@
 
 '''
 A script for cleaning up (sub)directories in a directory tree which do not contain files matching a given content type pattern, e.g. media files such as "*.mp3" or "*.mpg" by default.
-
+s
 @author: Todd Shore
 @copyright: 2014 Todd Shore. Licensed for distribution under the Apache License 2.0: See the files "NOTICE" and "LICENSE".
 @see: <a href="https://github.com/errantlinguist/media-utils">The project GitHub site</a>
-@version: 2014-11-29
+@version: 2014-12-03
 @since: 2014-09-25
 @todo: Test on Windows systems
 '''
@@ -191,11 +191,11 @@ if __name__ == "__main__":
 	args = argparser.parse_args()
 
 	rootdir = getattr(args, rootdir_arg)
-	print "Searching \"%s\" for non-content subdirectories..." % rootdir
+	print("Searching \"%s\" for non-content subdirectories..." % rootdir)
 	empty_dirs = find_empty_dirs(rootdir, getattr(args, content_file_pattern_arg), getattr(args, subdir_exclusion_pattern_arg))
-	print "Found %d subdirector(y|ies) which are candidate for deletion." % len(empty_dirs)
+	print("Found %d subdirector(y|ies) which are candidate for deletion." % len(empty_dirs))
 	deleted_dir_count = __delete_interactively(sorted(empty_dirs))
-	print "Deleted %d subdirector(y|ies)." % deleted_dir_count
+	print("Deleted %d subdirector(y|ies)." % deleted_dir_count)
 	exitcode = 0
 
 	exit(exitcode)

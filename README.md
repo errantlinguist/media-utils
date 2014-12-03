@@ -3,14 +3,14 @@ media-utils
 
 A collection of scripts for managing media filesets.
 
-* **Version:** 2014-11-29
+* **Version:** 2014-12-03
 * **Author:** Todd Shore
 * **Website:** https://github.com/errantlinguist/jtextgrid
 * **Licensing:** Copyright 2011--2014 Todd Shore. Licensed for distribution under the Apache License 2.0: See the files `NOTICE` and `LICENSE`.
 
 Requirements
 --------------------------------------------------------------------------------
-- Python 2.7.6
+- Python 2.7.6+
 
 Contents
 --------------------------------------------------------------------------------

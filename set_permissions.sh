@@ -17,6 +17,7 @@
 # A script for batch-setting permissions for directories and files, checking each file for a shebang in order to determine if it should have user-set "executable file" permissions applied to it or not.
 # Author: Todd Shore <errantlinguist+github@gmail.com>
 # Since: 2016-11-05
+# Website: https://github.com/errantlinguist/media-utils
 
 check_shebang()
 {

@@ -1,13 +1,27 @@
 #!/bin/sh
 
+# Copyright 2016 Todd Shore
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# 	http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # A script for batch-setting permissions for directories and files, checking each file for a shebang in order to determine if it should have user-set "executable file" permissions applied to it or not.
-# Author: Todd Shore <errantlinguist@gmail.com>
+# Author: Todd Shore <errantlinguist+github@gmail.com>
 # Since: 2016-11-05
 
 check_shebang()
 {
 	filepath="$1"
-	# <http://stackoverflow.com/a/2439587/1391325>
+	# Modified from SE answer <http://stackoverflow.com/a/2439587/1391325>
 	line=`head -n 1 "${filepath}"`
 	# Modified from SE answer <http://stackoverflow.com/a/33013693/1391325>
 	echo "${line}" | grep -q '^#!'

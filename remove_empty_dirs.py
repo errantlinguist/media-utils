@@ -182,12 +182,13 @@ if __name__ == "__main__":
 	exitcode = 1
 
 	argparser = argparse.ArgumentParser(description="A script for cleaning up (sub-)directories in a directory tree which do not contain files matching a given content type pattern, e.g. media files such as \"*.mp3\" or \"*.mpg\" by default.")
+	argparser.add_help
 	rootdir_arg = "rootdir"
 	argparser.add_argument(rootdir_arg, help="the root directory to search for subdirectories not containing valid content files")
 	content_file_pattern_arg = "content_file_pattern"
-	argparser.add_argument("-f --content_file_pattern", action=PatternAction, dest=content_file_pattern_arg, default=__create_default_content_file_pattern(), help="the root directory to search for subdirectories not containing valid content files")
+	argparser.add_argument("-f", action=PatternAction, dest=content_file_pattern_arg, default=__create_default_content_file_pattern(), help="the root directory to search for subdirectories not containing valid content files")
 	subdir_exclusion_pattern_arg = "subdir_exclusion_pattern"
-	argparser.add_argument("-e --subdir_exclusion_pattern", action=PatternAction, dest=subdir_exclusion_pattern_arg, default=__create_default_subdir_exclusion_pattern(), help="a pattern matching subdirectories to be excluded from search and possible deletion")
+	argparser.add_argument("-e", action=PatternAction, dest=subdir_exclusion_pattern_arg, default=__create_default_subdir_exclusion_pattern(), help="a pattern matching subdirectories to be excluded from search and possible deletion")
 	args = argparser.parse_args()
 
 	rootdir = getattr(args, rootdir_arg)

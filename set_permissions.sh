@@ -19,21 +19,21 @@
 # Since: 2016-11-05
 # Website: https://github.com/errantlinguist/media-utils
 
-check_shebang()
+is_executable_file()
+{
+	filepath="$1"
+	has_shebang "${filepath}"
+	# TODO: Check for binary executables?
+	return $?
+}
+
+has_shebang()
 {
 	filepath="$1"
 	# Modified from SE answer <http://stackoverflow.com/a/2439587/1391325>
 	line=`head -n 1 "${filepath}"`
 	# Modified from SE answer <http://stackoverflow.com/a/33013693/1391325>
 	echo "${line}" | grep -q '^#!'
-	return $?
-}
-
-is_executable_file()
-{
-	filepath="$1"
-	check_shebang "${filepath}"
-	# TODO: Check for binary executables?
 	return $?
 }
 

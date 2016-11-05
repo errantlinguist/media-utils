@@ -70,10 +70,15 @@ set_permissions()
 	fi	
 }
 
+USAGE_MSG="Usage: $0 ROOT_DIR DIR_PERMISSIONS DEFAULT_FILE_PERMISSIONS EXEC_FILE_PERMISSIONS"
 
-ROOT_DIR="${1:?"Root directory not set."}"
-DIR_PERMISSIONS="${2:?"Directory permissions not set."}" # e.g. 700
-DEFAULT_FILE_PERMISSIONS="${3:?"Default file permissions not set."}" # e.g. 600 for private files or 644 for semi-private
-EXEC_FILE_PERMISSIONS="${4:?"Executable file permissions not set."}" # e.g. 700 for private files or 755 for semi-private
+ROOT_DIR="${1:?"Root directory not set.
+${USAGE_MSG}"}"
+DIR_PERMISSIONS="${2:?"Directory permissions not set.
+${USAGE_MSG}"}" # e.g. 700
+DEFAULT_FILE_PERMISSIONS="${3:?"Default file permissions not set.
+${USAGE_MSG}"}" # e.g. 600 for private files or 644 for semi-private
+EXEC_FILE_PERMISSIONS="${4:?"Executable file permissions not set.
+${USAGE_MSG}"}" # e.g. 700 for private files or 755 for semi-private
 
 set_permissions "${ROOT_DIR}" "${DIR_PERMISSIONS}" "${DEFAULT_FILE_PERMISSIONS}" "${EXEC_FILE_PERMISSIONS}"

@@ -48,7 +48,7 @@ set_permissions()
 	chmod "${dir_permissions}" "${root_dir}"
 	if [ $? -eq 0 ]
 	then
-		find "${root_dir}" -type d -print0 | xargs -0 chmod "${dir_permissions}"
+		find "${root_dir}" -type d -exec chmod "${dir_permissions}" {} +
 		if [ $? -eq 0 ]
 		then
 			echo "Setting file permissions underneath \"${root_dir}\" to ${exec_file_permissions} for executable types and ${default_file_permissions} for non-executables."

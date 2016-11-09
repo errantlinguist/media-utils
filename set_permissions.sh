@@ -52,6 +52,7 @@ set_permissions()
 		if [ $? -eq 0 ]
 		then
 			echo "Setting file permissions underneath \"${root_dir}\" to ${exec_file_permissions} for executable types and ${default_file_permissions} for non-executables."
+			# TODO: Using find this way is fragile; A more robust way would be to use "... -exec sh -c 'somecommandwith "$1"' set_default_executable_file_permissions {} \;" <http://unix.stackexchange.com/a/321753>
 			find "${root_dir}" -type f | while read f
 			do
 				if is_executable_file "${f}"

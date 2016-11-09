@@ -41,8 +41,8 @@ set_permissions()
 {
 	root_dir="$1"
 	dir_permissions="$2"
-	default_file_permissions="$3"
-	exec_file_permissions="$4"
+	exec_file_permissions="$3"
+	default_file_permissions="$4"
 
 	echo "Setting directory permissions for \"${root_dir}\" and its children to ${dir_permissions}."
 	chmod "${dir_permissions}" "${root_dir}"
@@ -70,15 +70,15 @@ set_permissions()
 	fi	
 }
 
-USAGE_MSG="Usage: $0 ROOT_DIR DIR_PERMISSIONS DEFAULT_FILE_PERMISSIONS EXEC_FILE_PERMISSIONS"
+USAGE_MSG="Usage: $0 ROOT_DIR DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS"
 
 ROOT_DIR="${1:?"Root directory not set.
 ${USAGE_MSG}"}"
 DIR_PERMISSIONS="${2:?"Directory permissions not set.
 ${USAGE_MSG}"}" # e.g. 700
-DEFAULT_FILE_PERMISSIONS="${3:?"Default file permissions not set.
-${USAGE_MSG}"}" # e.g. 600 for private files or 644 for semi-private
-EXEC_FILE_PERMISSIONS="${4:?"Executable file permissions not set.
+EXEC_FILE_PERMISSIONS="${3:?"Executable file permissions not set.
 ${USAGE_MSG}"}" # e.g. 700 for private files or 755 for semi-private
+DEFAULT_FILE_PERMISSIONS="${4:?"Default file permissions not set.
+${USAGE_MSG}"}" # e.g. 600 for private files or 644 for semi-private
 
-set_permissions "${ROOT_DIR}" "${DIR_PERMISSIONS}" "${DEFAULT_FILE_PERMISSIONS}" "${EXEC_FILE_PERMISSIONS}"
+set_permissions "${ROOT_DIR}" "${DIR_PERMISSIONS}" "${EXEC_FILE_PERMISSIONS}" "${DEFAULT_FILE_PERMISSIONS}"

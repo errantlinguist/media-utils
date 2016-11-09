@@ -54,13 +54,13 @@ set_permissions()
 			echo "Setting file permissions underneath \"${root_dir}\" to ${exec_file_permissions} for executable types and ${default_file_permissions} for non-executables."
 			find "${root_dir}" -type f | while read f
 			do
-				new_file_permissions="${default_file_permissions}"
 				if is_executable_file "${f}"
 				then
 					new_file_permissions="${exec_file_permissions}"
+				else
+					new_file_permissions="${default_file_permissions}"
 				fi
 				chmod "${new_file_permissions}" "${f}"
-				#echo "Set permissions for \"${f}\" to ${new_file_permissions}."
 			done
 		else
 			return $?

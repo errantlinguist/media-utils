@@ -71,15 +71,34 @@ set_permissions()
 	fi	
 }
 
-USAGE_MSG="Usage: $0 ROOT_DIR DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS"
-
-ROOT_DIR="${1:?"Root directory not set.
-${USAGE_MSG}"}"
-DIR_PERMISSIONS="${2:?"Directory permissions not set.
+USAGE_MSG="Usage: $0 DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS PATHS..."
+exit_status=1
+if [ "$#" -lt 4 ]
+then
+    echo $USAGE_MSG 1>&2
+    exit_status=64
+else
+    # NOTE: Actual newline characters must be used in the error message string literals, not e.g. "\n"
+    dir_permissions="${1:?"Directory permissions not set.
 ${USAGE_MSG}"}" # e.g. 700
-EXEC_FILE_PERMISSIONS="${3:?"Executable file permissions not set.
+    shift
+    exec_file_permissions="${1:?"Executable file permissions not set.
 ${USAGE_MSG}"}" # e.g. 700 for private files or 755 for semi-private
-DEFAULT_FILE_PERMISSIONS="${4:?"Default file permissions not set.
+    shift
+    default_file_permissions="${1:?"Default file permissions not set.
 ${USAGE_MSG}"}" # e.g. 600 for private files or 644 for semi-private
+    shift
+    paths="$@"
 
-set_permissions "${ROOT_DIR}" "${DIR_PERMISSIONS}" "${EXEC_FILE_PERMISSIONS}" "${DEFAULT_FILE_PERMISSIONS}"
+    for path in ${paths}
+    do
+        set_permissions "${path}" "${dir_permissions}" "${exec_file_permissions}" "${default_file_permissions}"
+        exit_status=$?
+        if [ ${exit_status} -ne 0 ]
+        then
+            break
+        fi
+    done
+fi
+
+exit ${exit_status}

@@ -46,6 +46,7 @@ compress_pdf_inplace()
 				fi
 			else
 				echo "\"${inpath}\" is not smaller after compression."
+				rm "${tmpfile_path}"
 			fi			
 		else
 			echo "Could not compress \"${inpath}\"; Exit code ${result}."

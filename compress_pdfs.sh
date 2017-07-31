@@ -43,7 +43,6 @@ compress_pdf_inplace()
 				if [ ${result} -ne 0 ]
 				then
 					echo "Could not move \"${tmpfile_path}\" to \"${inpath}\"; Exit code ${result}."
-					break
 				fi
 			else
 				echo "\"${inpath}\" is not smaller after compression."

@@ -90,7 +90,7 @@ then
 	exit_code=64
 else
 	kernel=`uname`
-	echo "Defining file size comparison function for kernel \"${kernel}\"".
+	echo "Defining file size comparison function for kernel \"${kernel}\"..."
 	# https://stackoverflow.com/a/23472637/1391325
 	case "${kernel}" in
 		*BSD*) echo "Using BSD-style file size function."; file_size_func="file_size_bsd" ;;

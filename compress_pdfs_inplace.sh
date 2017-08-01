@@ -80,9 +80,8 @@ file_size_linux()
   stat -c "%s" "$@"
 }
 
-tmpfile_template="${0##*/}.XXXXXXXXXX"
-
 exit_code=1
+tmpfile_template="${0##*/}.XXXXXXXXXX"
 
 if [ $# -lt 1 ]
 then

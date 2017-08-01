@@ -71,22 +71,22 @@ set_permissions()
 	fi	
 }
 
-USAGE_MSG="Usage: $0 DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS PATHS..."
+usage_msg="Usage: $0 DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS PATHS..."
 exit_status=1
 if [ "$#" -lt 4 ]
 then
-    echo $USAGE_MSG 1>&2
+    echo $usage_msg 1>&2
     exit_status=64
 else
     # NOTE: Actual newline characters must be used in the error message string literals, not e.g. "\n"
     dir_permissions="${1:?"Directory permissions not set.
-${USAGE_MSG}"}" # e.g. 700
+${usage_msg}"}" # e.g. 700
     shift
     exec_file_permissions="${1:?"Executable file permissions not set.
-${USAGE_MSG}"}" # e.g. 700 for private files or 755 for semi-private
+${usage_msg}"}" # e.g. 700 for private files or 755 for semi-private
     shift
     default_file_permissions="${1:?"Default file permissions not set.
-${USAGE_MSG}"}" # e.g. 600 for private files or 644 for semi-private
+${usage_msg}"}" # e.g. 600 for private files or 644 for semi-private
     shift
     paths="$@"
 

@@ -82,15 +82,6 @@ file_size_bsd()
 
 TMPFILE_TEMPLATE="${0##*/}.XXXXXXXXXX"
 
-kernel=`uname`
-echo "Defining file size comparison function for kernel \"${kernel}\"".
-# https://stackoverflow.com/a/23472637/1391325
-case "${kernel}" in
-	*BSD*) echo "Using BSD-style file size function."; file_size_func="file_size_bsd" ;;
-	*Darwin*) echo "Using Darwin-style file size function."; file_size_func="file_size_bsd" ;;
-	*) echo "Using Linux-style filesize function."; file_size_func="file_size_linux" ;;
-esac
-
 exit_code=1
 
 if [ $# -lt 1 ]
@@ -98,6 +89,15 @@ then
 	echo "Usage: $0 INPATHS..."
 	exit_code=64
 else
+	kernel=`uname`
+	echo "Defining file size comparison function for kernel \"${kernel}\"".
+	# https://stackoverflow.com/a/23472637/1391325
+	case "${kernel}" in
+		*BSD*) echo "Using BSD-style file size function."; file_size_func="file_size_bsd" ;;
+		*Darwin*) echo "Using Darwin-style file size function."; file_size_func="file_size_bsd" ;;
+		*) echo "Using Linux-style filesize function."; file_size_func="file_size_linux" ;;
+	esac
+
 	for inpath in "$@"
 	do
 		compress_pdf_inplace "${inpath}" "${file_size_func}" "${TMPFILE_TEMPLATE}"

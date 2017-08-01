@@ -71,8 +71,10 @@ set_permissions()
 	fi	
 }
 
-usage_msg="Usage: $0 DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS PATHS..."
+
 exit_status=1
+usage_msg="Usage: $0 DIR_PERMISSIONS EXEC_FILE_PERMISSIONS DEFAULT_FILE_PERMISSIONS PATHS..."
+
 if [ "$#" -lt 4 ]
 then
     echo $usage_msg 1>&2

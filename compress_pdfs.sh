@@ -66,9 +66,7 @@ compress_pdf_inplace()
 # See: https://stackoverflow.com/a/23332217/1391325
 file_size_linux()
 {
-  opt_char='c'
-  fmt_string='%s'
-  stat -${opt_char} "${fmt_string}" "$@"
+  stat -c "%s" "$@"
 }
 
 # SYNOPSIS
@@ -79,9 +77,7 @@ file_size_linux()
 # See: https://stackoverflow.com/a/23332217/1391325
 file_size_bsd()
 {
-  opt_char='f'
-  fmt_string='%z'
-  stat -${opt_char} "${fmt_string}" "$@"
+  stat -f "%z" "$@"
 }
 
 TMPFILE_TEMPLATE="`basename $0`.XXXXXXXXXX"

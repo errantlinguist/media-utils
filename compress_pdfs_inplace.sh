@@ -80,7 +80,7 @@ file_size_linux()
   stat -c "%s" "$@"
 }
 
-TMPFILE_TEMPLATE="${0##*/}.XXXXXXXXXX"
+tmpfile_template="${0##*/}.XXXXXXXXXX"
 
 exit_code=1
 
@@ -100,7 +100,7 @@ else
 
 	for inpath in "$@"
 	do
-		compress_pdf_inplace "${inpath}" "${file_size_func}" "${TMPFILE_TEMPLATE}"
+		compress_pdf_inplace "${inpath}" "${file_size_func}" "${tmpfile_template}"
 		exit_code=$?
 		if [ "${exit_code}" -ne 0 ]
 		then

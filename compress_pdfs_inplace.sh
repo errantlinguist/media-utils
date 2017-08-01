@@ -64,9 +64,9 @@ compress_pdf_inplace()
 #   Returns the size of the specified file(s) in bytes, with each file's 
 #   size on a separate output line.
 # See: https://stackoverflow.com/a/23332217/1391325
-file_size_linux()
+file_size_bsd()
 {
-  stat -c "%s" "$@"
+  stat -f "%z" "$@"
 }
 
 # SYNOPSIS
@@ -75,9 +75,9 @@ file_size_linux()
 #   Returns the size of the specified file(s) in bytes, with each file's 
 #   size on a separate output line.
 # See: https://stackoverflow.com/a/23332217/1391325
-file_size_bsd()
+file_size_linux()
 {
-  stat -f "%z" "$@"
+  stat -c "%s" "$@"
 }
 
 TMPFILE_TEMPLATE="${0##*/}.XXXXXXXXXX"

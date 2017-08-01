@@ -91,4 +91,4 @@ else
 	done
 fi
 
-return ${exit_code}
+exit ${exit_code}

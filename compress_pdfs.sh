@@ -22,8 +22,7 @@
 compress_pdf_inplace()
 {
 	inpath="$1"
-	
-	tmpfile_path=`mktemp -qt "$(basename $0).XXXXXXXXXX"`
+	tmpfile_path=`mktemp -qt "${2}"`
 	result=$?
 	if [ ${result} -eq 0 ]
 	then
@@ -72,6 +71,8 @@ file_size()
   stat -${opt_char} "${fmt_string}" "$@"
 }
 
+TMPFILE_TEMPLATE="`basename $0`.XXXXXXXXXX"
+
 exit_code=1
 
 if [ $# -lt 1 ]
@@ -81,7 +82,7 @@ then
 else
 	for inpath in "$@"
 	do
-		compress_pdf_inplace "${inpath}"
+		compress_pdf_inplace "${inpath}" "TMPFILE_TEMPLATE"
 		exit_code=$?
 		if [ "${exit_code}" -ne 0 ]
 		then

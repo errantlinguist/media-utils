@@ -22,7 +22,8 @@
 compress_pdf_inplace()
 {
 	inpath="$1"
-	tmpfile_path=`mktemp -qt "${2}"`
+	file_size_func="${2}"
+	tmpfile_path=`mktemp -qt "${3}"`
 	result=$?
 	if [ ${result} -eq 0 ]
 	then
@@ -31,8 +32,8 @@ compress_pdf_inplace()
 		result=$?
 		if [ "${result}" -eq 0 ]
 		then
-			orig_size=`file_size "${inpath}"`
-			compressed_size=`file_size "${tmpfile_path}"`
+			orig_size=`${file_size_func} "${inpath}"`
+			compressed_size=`${file_size_func} "${tmpfile_path}"`
 			size_diff=`expr "${orig_size}" - "${compressed_size}"`
 			if [ "${size_diff}" -gt 0 ]
 			then
@@ -63,15 +64,36 @@ compress_pdf_inplace()
 #   Returns the size of the specified file(s) in bytes, with each file's 
 #   size on a separate output line.
 # See: https://stackoverflow.com/a/23332217/1391325
-file_size()
+file_size_linux()
 {
   opt_char='c'
   fmt_string='%s'
-#  [[ $(uname) =~ Darwin|BSD ]] && { opt_char='f'; fmt_string='%z'; }
+  stat -${opt_char} "${fmt_string}" "$@"
+}
+
+# SYNOPSIS
+#   fileSize file ...
+# DESCRIPTION
+#   Returns the size of the specified file(s) in bytes, with each file's 
+#   size on a separate output line.
+# See: https://stackoverflow.com/a/23332217/1391325
+file_size_bsd()
+{
+  opt_char='f'
+  fmt_string='%z'
   stat -${opt_char} "${fmt_string}" "$@"
 }
 
 TMPFILE_TEMPLATE="`basename $0`.XXXXXXXXXX"
+
+kernel=`uname`
+echo "Defining file size comparison function for kernel \"${kernel}\"".
+# https://stackoverflow.com/a/23472637/1391325
+case "${kernel}" in
+	*BSD*) echo "Using BSD-style file size function."; file_size_func="file_size_bsd" ;;
+	*Darwin*) echo "Using Darwin-style file size function."; file_size_func="file_size_bsd" ;;
+	*) echo "Using Linux-style filesize function."; file_size_func="file_size_linux" ;;
+esac
 
 exit_code=1
 
@@ -82,7 +104,7 @@ then
 else
 	for inpath in "$@"
 	do
-		compress_pdf_inplace "${inpath}" "${TMPFILE_TEMPLATE}"
+		compress_pdf_inplace "${inpath}" "${file_size_func}" "${TMPFILE_TEMPLATE}"
 		exit_code=$?
 		if [ "${exit_code}" -ne 0 ]
 		then

@@ -89,7 +89,7 @@ then
 	echo "Usage: $0 INPATHS..."
 	exit_code=64
 else
-	kernel=`uname`
+	kernel=`uname -s`
 	echo "Defining file size comparison function for kernel \"${kernel}\"..."
 	# https://stackoverflow.com/a/23472637/1391325
 	case "${kernel}" in

@@ -80,7 +80,7 @@ file_size_bsd()
   stat -f "%z" "$@"
 }
 
-TMPFILE_TEMPLATE="`basename $0`.XXXXXXXXXX"
+TMPFILE_TEMPLATE="${0##*/}.XXXXXXXXXX"
 
 kernel=`uname`
 echo "Defining file size comparison function for kernel \"${kernel}\"".

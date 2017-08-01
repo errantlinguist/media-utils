@@ -95,7 +95,7 @@ else
 	case "${kernel}" in
 		*BSD*) echo "Using BSD-style file size function."; file_size_func="file_size_bsd" ;;
 		*Darwin*) echo "Using Darwin-style file size function."; file_size_func="file_size_bsd" ;;
-		*) echo "Using Linux-style filesize function."; file_size_func="file_size_linux" ;;
+		*) echo "Using Linux-style file size function."; file_size_func="file_size_linux" ;;
 	esac
 
 	for inpath in "$@"

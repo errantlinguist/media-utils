@@ -89,7 +89,7 @@ def format_bad_filenames(path):
 	@return: A converted path name with the Windows-illegal characters replaced.
 	@rtype: str
 	'''
-	for root, _, files in os.walk(path):
+	for root, _, files in os.walk(path, followLinks=True):
 		relative_base = os.path.relpath(root)
 
 		for filename in files:
